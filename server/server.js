@@ -7,11 +7,12 @@ const http = require('http').createServer(app);
 const path = require('path');
 const io = require('socket.io')(http, {
   cors: {
-    origin: ["https://notes-app-75h8.vercel.app"],
+    origin: "https://notes-app-75h8.vercel.app",
     methods: ["GET", "POST"]
   }
 });
 dotenv.config();
+app.use(cors());
 app.use(express.json());
 let notesData = [...notes]
 const users = [];
