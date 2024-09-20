@@ -5,7 +5,6 @@ import "./Notes.css";
 const Notes = (props) => {
     let { removeNoteHandler, editNoteHandler, notes } = props;
     let publishedNotes = null;
-    console.log("notes render")
     if (notes.length > 0) {
         publishedNotes = getNotesByType(notes, "published");
     }

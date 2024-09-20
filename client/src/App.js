@@ -21,21 +21,15 @@ function App() {
   const notes = state.notes.data;
   const socket = io(path)
   useEffect(() => {
-    axios.get("/users").then((data) => {
-      console.log(data)
-      dispatch({ type: "SET__USERS", payload: data.data.users })
-    })
+    fetchUsers()
   }, [dispatch])
   useEffect(() => {
-    axios.get("/notes").then(data => {
-      dispatch({ type: "FETCH__NOTES__SUCCESS", payload: data.data })
-    }).catch(err => dispatch({ type: "FETCH__NOTES__ERROR", payload: err.message }))
+    fetchNotes();
   }, [dispatch])
 
 
   useEffect(() => {
     socket.on("updateNote", data => {
-      console.log(data)
       dispatch({ type: "SET__NOTES", payload: data.notes[0] })
     })
     socket.on("addNote", data => {
@@ -48,6 +42,28 @@ function App() {
     let sortedNotes = notes.sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
     dispatch({ type: "SET__NOTES", payload: sortedNotes })
   }
+
+  async function fetchNotes() {
+    try {
+      const data = await axios.get("/notes")
+      console.log(data)
+      dispatch({ type: "FETCH__NOTES__SUCCESS", payload: data.data.notes })
+    } catch (error) {
+      dispatch({ type: "FETCH__NOTES__ERROR", payload: error.message })
+    }
+  }
+  async function fetchUsers() {
+
+    try {
+      const data = await axios.get("/users")
+      dispatch({ type: "SET__USERS", payload: data.data.users })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
 
   const publish = (draft) => {
     let cloneNotes = [...state.notes.data];
