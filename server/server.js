@@ -44,11 +44,11 @@ io.on('connection', (socket) => {
 app.use(cors())
 
 app.get("/notes", (req, res) => {
-  res.json(notesData)
+  res.json({ notes: notesData })
 })
 app.post("/notes", (req, res) => {
-
   notesData = req.body
+
   res.json({ notes: notesData })
 
 })
@@ -57,6 +57,7 @@ app.post("/users", (req, res) => {
   res.json({ users })
 })
 app.get("/users", (req, res) => {
+  console.log(users)
 
   res.json({ users })
 })
