@@ -1,0 +1,1 @@
+export const getNotesByType = (notes, type) => notes.filter(note => note.status === type)

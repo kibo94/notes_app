@@ -1,0 +1,15 @@
+.Header{
+    
+    height: 80px;
+    text-align: center;
+    background: #333;
+    color: white;
+    font-size:35px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.Header .logo{
+    width: 100px;
+    height: 60px;
+}

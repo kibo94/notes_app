@@ -1,0 +1,84 @@
+.Nav{
+
+   background: black;
+   position: relative;
+   height: 80px;
+   display: flex;
+   justify-content:space-between;
+   align-items: center;
+   padding:0 20px;
+  
+}
+.Nav .NavLinks{
+    display: flex;
+    align-items: center;
+}
+.NavLinks a{
+    color:wheat;
+    font-weight: bold;
+    padding:0.5rem;
+}
+.NavLinks .logo{
+    padding:0;
+    padding-right: 0.5rem;
+   
+}
+
+.Nav .logo{
+    width: 100px;
+    height: 60px;
+
+}
+.Nav .burger{
+    position: absolute;
+    right: 20px;
+    top:50%;
+    transform:translateY(-50%);
+    display: none;
+}
+.Nav .burger i{
+    color: wheat;
+  
+}
+.Nav p{
+    margin:0;
+    margin-right: 0.5rem;
+    color:wheat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Nav p i{
+    color:rgb(240, 20, 240);
+    font-size: 30px;
+    margin-right: 10px;
+}
+.Nav .burger i{
+    font-size: 30px;
+}
+
+@media(max-width:768px){
+    .Nav .burger{
+        display:block;
+    }
+    .Nav .NavLinks{
+        transform:translateX(-100%);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 80%;
+        background: black;
+        height: 100vh;
+        z-index: 2;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition:transform ease-in 0.3s;
+    }
+    .Nav .NavLinks.open{
+        transform: translateX(0);
+    }
+    .NavLinks a {
+        font-size: 35px;
+    }
+}

@@ -1,0 +1,9 @@
+.messages {
+    margin-top: 20px;
+}
+.messages p.text-danger{
+    margin:5px 0;
+    background:rgb(150, 145, 145);
+    border-radius: 12px;
+    padding:3px 5px;
+}

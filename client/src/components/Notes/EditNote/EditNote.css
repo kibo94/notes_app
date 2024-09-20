@@ -1,0 +1,21 @@
+.EditWrapper{
+    height: auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    background:wheat;
+    margin:10px auto;
+    padding:1rem;
+}
+.Edit .messages{
+   
+
+}
+.EditWrapper p{
+    background:white;
+    margin:10px;
+    padding:5px;
+    border-radius: 10px;
+}

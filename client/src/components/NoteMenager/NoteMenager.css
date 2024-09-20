@@ -1,0 +1,11 @@
+.ButtonsGroup{
+    
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.ButtonsGroup button{
+    margin:1rem;
+}
+

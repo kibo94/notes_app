@@ -1,0 +1,14 @@
+.Footer{
+    text-align: center;
+    padding-left: 2rem;
+    height: 70px;
+    line-height: 70px;
+    text-transform: uppercase;
+    background: #333;
+    color: white;
+    font-size:25px;
+    position: fixed;
+    bottom:0;
+    left:0;
+    width: 100%;
+}

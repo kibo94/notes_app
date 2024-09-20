@@ -1,0 +1,1 @@
+export const getUser = (users, email) => users.find(u => u.email === email);

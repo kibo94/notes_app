@@ -1,0 +1,1 @@
+export const getSingleNoteById = (id , notes) => notes.find(note => note.id.toString() === id);    

@@ -1,0 +1,5 @@
+[{"title":"Note1","body":"This is a Note 1","author__name":"John Does","id":1,"date":"12/08/2020","status":"published"},
+    {"title":"Sport Note","body":"This is a Note 2","author__name":"Jane Doe","id":2,"date":"04/05/2020","status":"published"},
+    {"title":"Note3","body":"This is a Note 3","author__name":"Stef Curry","id":3,"date":"09/07/2020","status":"published"},
+    {"title":"Note4","body":"This is a Note 4","author__name":"Lionel Messi","id":4,"date":"10/03/2020","status":"published"},
+    {"title":"Note5","body":"This is a Note 5","author__name":"Nikola Jokic","id":5,"date":"12/05/2020","status":"drafts"}]

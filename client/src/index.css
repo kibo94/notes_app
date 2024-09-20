@@ -1,0 +1,29 @@
+
+@font-face{
+  font-family:"bw-bold";
+  src:url("./assets/bw-20-bold.ttf");
+}
+body {
+  margin: 0;
+  font-family:"bw-bold";
+  background: url("./assets/bck.jpg")!important;
+  background-size: cover;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@media(max-width:520px){
+  body{
+
+    background-image: url("./assets/bck-mobile.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+.Mouse{
+  height: 100vh;
+}

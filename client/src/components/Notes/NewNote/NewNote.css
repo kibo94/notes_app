@@ -1,0 +1,16 @@
+.NewNote{
+    text-align: right;
+
+    padding: 0.5rem 1.5rem 0.5rem 0;
+   
+}
+
+.NewNoteBtn{
+    background: rgb(48, 48, 182);
+    outline: none;
+    padding: 0.5rem 1rem;
+    border: none;
+    text-transform: uppercase;
+    color: wheat;
+    font-weight: bold;
+}
