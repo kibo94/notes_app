@@ -1,1 +1,1 @@
-export const path = "http://localhost:4000";
+export const path = "https://notes-app-one-brown.vercel.app";

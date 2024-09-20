@@ -1,7 +1,7 @@
 
 import axios from "axios"
 const instance = axios.create({
-  baseURL: 'http://localhost:4000'
+  baseURL: 'https://notes-app-one-brown.vercel.app'
 
 });
 export default instance;  
