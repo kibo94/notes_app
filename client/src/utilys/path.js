@@ -1,1 +1,1 @@
-export const path = "https://my-notes-app-api.herokuapp.com";
+export const path = "http://localhost:4000";

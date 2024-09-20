@@ -8,52 +8,52 @@ import { getUser } from '../../utilys/getUser';
 import { useHistory } from 'react-router-dom';
 import "./Form.css"
 const Register = () => {
-    const {state , dispatch} = useContext(NotesContext);
+    const { state, dispatch } = useContext(NotesContext);
     const history = useHistory();
     // RESET REGISTER FORM ERROR MESSAGES
     useEffect(() => {
-        dispatch({type:"SET__VALIDATION__ERRORS" , payload:[]});
-    });
+        dispatch({ type: "SET__VALIDATION__ERRORS", payload: [] });
+    }, []);
 
     const loginFrom = {
-        email:"",
-        passowrd:""
+        email: "",
+        passowrd: ""
     }
-    let [regiserInputs , setInputValue] = useForm(loginFrom);
+    let [regiserInputs, setInputValue] = useForm(loginFrom);
 
     const registerHandler = (e) => {
         e.preventDefault();
-            // Get email and password form register inptus obejct
-        let {email , passowrd} = regiserInputs;
-           // Validation of  regiser form
-           
-        if(!authValidation(email,passowrd).valid) {
-         
-            dispatch({type:"SET__VALIDATION__ERRORS" , payload:authValidation(email,passowrd).messages});
-        }
-        else{
+        // Get email and password form register inptus obejct
+        let { email, passowrd } = regiserInputs;
+        // Validation of  regiser form
 
-            if (getUser(state.users,email)) {
-                    dispatch({type:"SET__VALIDATION__ERRORS" , payload:["User  exists"]});
+        if (!authValidation(email, passowrd).valid) {
+
+            dispatch({ type: "SET__VALIDATION__ERRORS", payload: authValidation(email, passowrd).messages });
+        }
+        else {
+
+            if (getUser(state.users, email)) {
+                dispatch({ type: "SET__VALIDATION__ERRORS", payload: ["User  exists"] });
             }
             else {
-                    axios.post("/users",{email,passowrd}).then((data) => {
-                    dispatch({type:"SET__USERS",payload:data.data.users});
+                axios.post("/users", { email, passowrd }).then((data) => {
+                    dispatch({ type: "SET__USERS", payload: data.data.users });
                     history.push("/login")
                 })
             }
-            
+
         }
     }
     return (
         <div class="Form">
             <form >
-                <input  placeholder="Enter your email" name="email" onChange={setInputValue}/>
-                <input placeholder="Enter your passowrd" name="passowrd" onChange={setInputValue}/>
-                <input onClick={registerHandler} className="btn btn-primary" type="submit" value="Register"/>
-                <ValidationErrMesages errMessages={state.errMessages}/>
+                <input placeholder="Enter your email" name="email" onChange={setInputValue} />
+                <input placeholder="Enter your passowrd" name="passowrd" onChange={setInputValue} />
+                <input onClick={registerHandler} className="btn btn-primary" type="submit" value="Register" />
+                <ValidationErrMesages errMessages={state.errMessages} />
             </form>
-           
+
         </div>
     )
 }

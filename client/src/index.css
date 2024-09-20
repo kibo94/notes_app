@@ -8,6 +8,7 @@ body {
   font-family:"bw-bold";
   background: url("./assets/bck.jpg")!important;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 code {
