@@ -1,1 +1,1 @@
-export const path = "https://notes-app-one-brown.vercel.app";
+export const path = "https://notes-app-api-amber.vercel.app";
