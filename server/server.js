@@ -106,8 +106,9 @@ let PORT = 4000;
 //     console.log(`Server running on port ${PORT}`)
 // })
 const isProduction = process.env.NODE_ENV === "production";
+console.log(isProduction)
 
-if (isProduction) {
+if (!isProduction) {
   // Set static folder
   app.use(express.static(path.join(__dirname, "../client/build")));
 
