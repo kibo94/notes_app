@@ -116,10 +116,10 @@ if (isProduction) {
       path.resolve(__dirname, "..", "client", "build", "index.html")
     ); // index is in /server/src so 2 folders up
   });
-  http.listen(process.env.PORT || 4000);
+  app.listen(process.env.PORT || 4000);
 
 } else {
-  http.listen(process.env.PORT || 4000);
+  app.listen(process.env.PORT || 4000);
 }
 
 
