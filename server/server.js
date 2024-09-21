@@ -14,7 +14,7 @@ const io = new Server(http, {
 
     methods: ['GET', 'POST'],
     // origin: "http://localhost:3000",
-    transports: ['polling', 'websocket'] // En
+    // transports: ['polling', 'websocket'] // En
     // transports: ['polling']
   }
 });
