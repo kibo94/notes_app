@@ -11,7 +11,8 @@ app.use(cors());
 const io = new Server(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
-    allowedHeaders: ['Access-Control-Allow-Origin: *'],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],  // Headers you want to allow
+    credentials: true,
     methods: ['GET', 'POST'],
     // origin: "http://localhost:3000",
     // transports: ['polling', 'websocket'] // En
@@ -19,14 +20,7 @@ const io = new Server(http, {
   }
 });
 dotenv.config();
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://your-vercel-domain.com');  // Replace with your domain
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
 
-
-  next();
-});
 app.use(express.json());
 let notesData = [...notes]
 const users = [];
