@@ -11,7 +11,7 @@ import { path } from '../../../utilys/path';
 import { io } from 'socket.io-client';
 function Modal() {
   const { state, dispatch } = useContext(NotesContext);
-  const socket = io(path)
+  const socket = io(path, { transports: ['polling', 'websocket'] })
   const [singleNote, setSingleNote] = useForm({
     title: "",
     author__name: state.user.auth ? state.user.name : "",
