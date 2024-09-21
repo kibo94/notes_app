@@ -112,7 +112,7 @@ let PORT = 4000;
 const isProduction = process.env.NODE_ENV === "production";
 console.log(isProduction)
 
-if (isProduction) {
+if (!isProduction) {
   // // Set static folder
   app.use(express.static(path.join(__dirname, "../client/build")));
 
@@ -125,7 +125,7 @@ if (isProduction) {
   http.listen(process.env.PORT || 4000);
 
 } else {
-  http.listen(process.env.PORT || 4000);
+  app.listen(process.env.PORT || 4000);
 }
 
 
