@@ -19,7 +19,7 @@ import Register from './components/auth/Register';
 function App() {
   const { state, dispatch } = useContext(NotesContext);
   const notes = state.notes.data;
-  const socket = io(path, { transports: ['polling', 'websocket'] })
+  const socket = io(path, { withCredentials: true, })
   useEffect(() => {
     fetchUsers()
   }, [dispatch])
