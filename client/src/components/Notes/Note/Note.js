@@ -5,7 +5,7 @@ import { NotesContext } from '../../../context';
 import axios from "../../../utilys/axios"
 import { path } from '../../../utilys/path';
 import { io } from 'socket.io-client';
-const socket = io(path, { transports: ['polling', 'websocket'] })
+const socket = path
 const Note = (props) => {
   const { dispatch, state } = useContext(NotesContext);
 

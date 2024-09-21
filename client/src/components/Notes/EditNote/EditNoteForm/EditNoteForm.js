@@ -8,7 +8,8 @@ import "../EditNote.css";
 
 import { io } from 'socket.io-client';
 import { path } from '../../../../utilys/path';
-const socket = io(path, { transports: ['polling', 'websocket'] })
+const socket = path
+
 function EditNoteForm({ singleNote, updateNoteInput }) {
 
     const { state, dispatch } = useContext(NotesContext);

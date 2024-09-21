@@ -1,2 +1,4 @@
-export const path = "https://notes-app-api-amber.vercel.app";
-// export const path = "http://localhost:4000";
+import io from "socket.io-client";
+
+// export const path = "https://notes-app-api-amber.vercel.app";
+export const path = io('https://notes-app-api-amber.vercel.app')
