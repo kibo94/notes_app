@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
   socket.on("addNote", data => {
     socket.broadcast.emit("addNote", data);
 
-  }, { transports: ['websocket'] })
+  },)
   socket.on("deleteNote", data => {
     socket.broadcast.emit("deleteNote", data);
 
