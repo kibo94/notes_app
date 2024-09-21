@@ -6,8 +6,9 @@ const app = express();
 const http = require('http').createServer(app);
 const https = require('https').createServer(app);
 const path = require('path');
+const { Server } = require("socket.io")
 app.use(cors());
-const io = require("socket.io")(http, {
+const io = new Server(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
     credentials: true,
