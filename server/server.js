@@ -11,7 +11,8 @@ app.use(cors());
 const io = new Server(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
-    credentials: true,
+
+
     // origin: "http://localhost:3000",
     transports: ['polling', 'websocket'] // En
     // transports: ['polling']
