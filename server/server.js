@@ -7,7 +7,7 @@ const http = require('http').createServer(app);
 const https = require('https').createServer(app);
 const path = require('path');
 app.use(cors());
-const io = require("socket.io")(https, {
+const io = require("socket.io")(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
     // origin: "http://localhost:3000",
@@ -123,10 +123,10 @@ if (isProduction) {
       path.resolve(__dirname, "..", "client", "build", "index.html")
     ); // index is in /server/src so 2 folders up
   });
-  https.listen(process.env.PORT || 4000);
+  http.listen(process.env.PORT || 4000);
 
 } else {
-  https.listen(process.env.PORT || 4000);
+  http.listen(process.env.PORT || 4000);
 }
 
 
