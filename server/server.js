@@ -10,8 +10,8 @@ app.use(cors());
 const io = require("socket.io")(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
+    credentials: true,
     // origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
     transports: ['polling', 'websocket'] // En
     // transports: ['polling']
   }
