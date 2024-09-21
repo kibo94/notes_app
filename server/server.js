@@ -8,7 +8,8 @@ const path = require('path');
 const io = require('socket.io')(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"],
+    transports: ['polling']
   }
 });
 dotenv.config();
