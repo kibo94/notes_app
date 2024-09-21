@@ -12,7 +12,7 @@ const io = new Server(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
 
-
+    methods: ['GET', 'POST'],
     // origin: "http://localhost:3000",
     transports: ['polling', 'websocket'] // En
     // transports: ['polling']
