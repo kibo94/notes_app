@@ -7,7 +7,7 @@ const http = require('http').createServer(app);
 const path = require('path');
 const io = require('socket.io')(http, {
   cors: {
-    origin: "*",
+    origin: "https://notes-app-api-amber.vercel.app",
     methods: ["GET", "POST"]
   }
 });
