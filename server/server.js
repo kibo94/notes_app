@@ -5,15 +5,18 @@ const dotenv = require('dotenv');
 const app = express();
 const http = require('http').createServer(app);
 const path = require('path');
-const io = require('socket.io')(http, {
+app.use(cors());
+const io = require("socket.io")(http, {
   cors: {
     origin: "https://notes-app-api-amber.vercel.app",
+    // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
-    transports: ['polling']
+    transports: ['polling', 'websocket'] // En
+    // transports: ['polling']
   }
 });
 dotenv.config();
-app.use(cors());
+
 app.use(express.json());
 let notesData = [...notes]
 const users = [];
@@ -109,20 +112,20 @@ let PORT = 4000;
 const isProduction = process.env.NODE_ENV === "production";
 console.log(isProduction)
 
-if (!isProduction) {
+if (isProduction) {
   // // Set static folder
-  // app.use(express.static(path.join(__dirname, "../client/build")));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 
-  // app.get("*", (req, res) => {
+  app.get("*", (req, res) => {
 
-  //   res.sendFile(
-  //     path.resolve(__dirname, "..", "client", "build", "index.html")
-  //   ); // index is in /server/src so 2 folders up
-  // });
-  app.listen(process.env.PORT || 4000);
+    res.sendFile(
+      path.resolve(__dirname, "..", "client", "build", "index.html")
+    ); // index is in /server/src so 2 folders up
+  });
+  http.listen(process.env.PORT || 4000);
 
 } else {
-  app.listen(process.env.PORT || 4000);
+  http.listen(process.env.PORT || 4000);
 }
 
 
