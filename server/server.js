@@ -19,7 +19,14 @@ const io = new Server(http, {
   }
 });
 dotenv.config();
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://your-vercel-domain.com');  // Replace with your domain
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, Origin');
 
+
+  next();
+});
 app.use(express.json());
 let notesData = [...notes]
 const users = [];
