@@ -7,23 +7,14 @@ const http = require('http').createServer(app);
 const https = require('https').createServer(app);
 const path = require('path');
 const { Server } = require("socket.io")
+app.use(express.json());
 app.use(cors());
-const io = new Server(http, {
-  cors: {
-    origin: "https://notes-app-api-amber.vercel.app",
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],  // Headers you want to allow
-    credentials: true,
-    methods: ['GET', 'POST'],
-    // origin: "http://localhost:3000",
-    // transports: ['polling', 'websocket'] // En
-    // transports: ['polling']
-  }
-});
 dotenv.config();
 
-app.use(express.json());
 let notesData = [...notes]
 const users = [];
+const server = http.createServer(app);
+const io = new Server(server);
 io.on('connection', (socket) => {
   socket.on("addNote", data => {
     socket.broadcast.emit("addNote", data);
@@ -107,29 +98,36 @@ app.delete("/notes/:id", (req, res) => {
   res.json({ notes: filterNote })
 
 })
-let PORT = 4000;
+
 
 
 // http.listen(PORT, () => {
 //     console.log(`Server running on port ${PORT}`)
 // })
-const isProduction = process.env.NODE_ENV === "production";
-console.log(isProduction)
+// const isProduction = process.env.NODE_ENV === "production";
+// console.log(isProduction)
 
-if (isProduction) {
-  // // Set static folder
-  app.use(express.static(path.join(__dirname, "../client/build")));
+// if (isProduction) {
+//   // // Set static folder
+//   app.use(express.static(path.join(__dirname, "../client/build")));
 
-  app.get("*", (req, res) => {
+//   app.get("*", (req, res) => {
 
-    res.sendFile(
-      path.resolve(__dirname, "..", "client", "build", "index.html")
-    ); // index is in /server/src so 2 folders up
-  });
-  http.listen(process.env.PORT || 4000);
+//     res.sendFile(
+//       path.resolve(__dirname, "..", "client", "build", "index.html")
+//     ); // index is in /server/src so 2 folders up
+//   });
+//   http.listen(process.env.PORT || 4000);
 
-} else {
-  http.listen(process.env.PORT || 4000);
-}
+// } else {
+//   http.listen(process.env.PORT || 4000);
+// }
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, () => {
+
+});
+
+// Export the Express app for Vercel
+export default app;
 
 
