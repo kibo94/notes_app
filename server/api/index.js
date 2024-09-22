@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
 // app.use(cors({
 //   origin: 'https://notes-app-bjk8.vercel.app', // Replace with your client URL
 //   methods: ['GET', 'POST', 'OPTIONS'],
@@ -28,13 +28,19 @@ let notesData = [
 
 const users = [];
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: 'https://notes-app-omega-eight.vercel.app', // Your client's URL
-    methods: ['GET', 'POST', 'OPTIONS'],
-  },
-});
+const corsOptions = {
+  origin: 'https://notes-app-omega-eight.vercel.app', // Update with your client URL
+  methods: ['GET', 'POST', 'OPTIONS'],
+};
+
+app.use(cors(corsOptions));
 app.options('*', cors()); // Enable preflight for all routes
+
+// Socket.io setup
+const io = new Server(server, {
+  cors: corsOptions,
+});
+
 io.on("connection", (socket) => {
   socket.on("addNote", (data) => {
     socket.broadcast.emit("addNote", data);
