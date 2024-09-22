@@ -13,20 +13,18 @@ import cors from "cors";
 import dotenv from "dotenv";
 import http from "http"
 import { Server } from "socket.io"
-import path from "path";
-import fs from "fs"
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 dotenv.config();
-let notesData = [];
-const loadNotesData = async () => {
-  const dataPath = path.resolve('./db/data.json');
-  const data = await fs.readFile(dataPath, 'utf-8');
-  notesData = data;
-  return JSON.parse(data);
-};
-loadNotesData()
+let notesData = JSON.parse([{ "title": "Note1", "body": "This is a Note 1", "author__name": "johndoe@gmail.com", "id": 1, "date": "12/08/2020", "status": "published" },
+{ "title": "Sport Note", "body": "This is a Note 2", "author__name": "anna@gmailc.om", "id": 2, "date": "04/05/2020", "status": "published" },
+{ "title": "Note3", "body": "This is a Note 3", "author__name": "nikola@gmail.com", "id": 3, "date": "09/07/2019", "status": "published" },
+{ "title": "Note4", "body": "This is a Note 4", "author__name": "lmessi@gmail.com", "id": 4, "date": "10/03/2020", "status": "published" },
+{ "title": "Note5", "body": "This is a Note 5", "author__name": "johny@gmail.com", "id": 5, "date": "12/11/2020", "status": "drafts" }]
+);
+
 console.log(notesData)
 const users = [];
 const server = http.createServer(app);
