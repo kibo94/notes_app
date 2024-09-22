@@ -19,8 +19,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 dotenv.config();
-const dataPath = path.resolve('./db/data.json'); // Adjust path if necessary
-let notesData = JSON.parse(fs.readFileSync(dataPath, 'utf-8')); // Syn
+let notesData = [];
+const loadNotesData = async () => {
+  const dataPath = path.resolve('./db/data.json');
+  const data = await fs.readFile(dataPath, 'utf-8');
+  notesData = data;
+  return JSON.parse(data);
+};
+loadNotesData()
 console.log(notesData)
 const users = [];
 const server = http.createServer(app);
@@ -53,8 +59,12 @@ io.on('connection', (socket) => {
 })
 app.use(cors())
 
-app.get("api/notes", (req, res) => {
-  res.json({ notes: notesData })
+app.get("api/notes", async (req, res) => {
+  if (notesData.length === 0) {
+    notesData = await loadNotesData(); // Load data if it's not loaded
+  }
+  res.json({ notes: notesData });
+
 })
 app.post("api/notes", (req, res) => {
   notesData = req.body
