@@ -8,20 +8,16 @@
   ],
   "routes": [
     {
-      "src": "/api/notes",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/api/users",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/api/notes/filter",
-      "dest": "/api/index.js"
-    },
-    {
-      "src": "/api/notes/:id",
+      "src": "/api/(.*)",
       "dest": "/api/index.js"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 10
+    }
+  }
 }
