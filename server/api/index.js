@@ -9,10 +9,10 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(cors({
-  origin: 'https://notes-app-bjk8.vercel.app', // Replace with your client URL
-  methods: ['GET', 'POST', 'OPTIONS'],
-}));
+// app.use(cors({
+//   origin: 'https://notes-app-bjk8.vercel.app', // Replace with your client URL
+//   methods: ['GET', 'POST', 'OPTIONS'],
+// }));
 
 let notesData = [
   {
