@@ -28,8 +28,13 @@ let notesData = [
 
 const users = [];
 const server = http.createServer(app);
-const io = new Server(server);
-
+const io = new Server(server, {
+  cors: {
+    origin: 'https://notes-app-omega-eight.vercel.app', // Your client's URL
+    methods: ['GET', 'POST', 'OPTIONS'],
+  },
+});
+app.options('*', cors()); // Enable preflight for all routes
 io.on("connection", (socket) => {
   socket.on("addNote", (data) => {
     socket.broadcast.emit("addNote", data);
