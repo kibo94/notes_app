@@ -1,17 +1,27 @@
-let notes = require('./db/data.json')
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
+// let notes = require('./db/data.json')
+// const express = require('express');
+// const cors = require('cors');
+// const dotenv = require('dotenv');
+
+// const http = require('http').createServer(app);
+// const https = require('https').createServer(app);
+// const path = require('path');
+// const { Server } = require("socket.io")
+
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import http from "http"
+import { Server } from "socket.io"
+import path from "path";
+import fs from "fs"
 const app = express();
-const http = require('http').createServer(app);
-const https = require('https').createServer(app);
-const path = require('path');
-const { Server } = require("socket.io")
 app.use(express.json());
 app.use(cors());
 dotenv.config();
-
-let notesData = [...notes]
+const dataPath = path.resolve('./db/data.json'); // Adjust path if necessary
+let notesData = JSON.parse(fs.readFileSync(dataPath, 'utf-8')); // Syn
+console.log(notesData)
 const users = [];
 const server = http.createServer(app);
 const io = new Server(server);
@@ -43,16 +53,16 @@ io.on('connection', (socket) => {
 })
 app.use(cors())
 
-app.get("/notes", (req, res) => {
+app.get("api/notes", (req, res) => {
   res.json({ notes: notesData })
 })
-app.post("/notes", (req, res) => {
+app.post("api/notes", (req, res) => {
   notesData = req.body
 
   res.json({ notes: notesData })
 
 })
-app.post("/users", (req, res) => {
+app.post("api/users", (req, res) => {
   users.push(req.body)
   res.json({ users })
 })
@@ -61,7 +71,7 @@ app.get("/users", (req, res) => {
 
   res.json({ users })
 })
-app.put("/notes", (req, res) => {
+app.put("api/notes", (req, res) => {
 
   let note = req.body;
   notesData = notesData.map(d => {
@@ -75,7 +85,7 @@ app.put("/notes", (req, res) => {
   res.json({ notes: notesData })
 
 })
-app.get("/notes/filter", (req, res) => {
+app.get("api/notes/filter", (req, res) => {
   let word = req.query
   console.log(word)
   // console.log(word)
@@ -92,7 +102,7 @@ app.get("/notes/filter", (req, res) => {
 
 })
 
-app.delete("/notes/:id", (req, res) => {
+app.delete("api/notes/:id", (req, res) => {
   const filterNote = notesData.filter(note => note.id.toString() !== req.params.id.toString());
   notesData = filterNote;
   res.json({ notes: filterNote })
