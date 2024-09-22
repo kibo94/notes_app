@@ -31,6 +31,7 @@ const server = http.createServer(app);
 const corsOptions = {
   origin: 'https://notes-app-omega-eight.vercel.app', // Update with your client URL
   methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true, // Allow credentials if needed
 };
 
 app.use(cors(corsOptions));
@@ -38,7 +39,11 @@ app.options('*', cors()); // Enable preflight for all routes
 
 // Socket.io setup
 const io = new Server(server, {
-  cors: corsOptions,
+  cors: {
+    origin: 'https://notes-app-omega-eight.vercel.app',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
 });
 
 io.on("connection", (socket) => {
