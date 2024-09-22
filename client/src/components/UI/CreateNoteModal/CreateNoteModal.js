@@ -8,7 +8,6 @@ import { NotesContext } from '../../../context';
 import valid from '../../../utilys/validation';
 import axios from "../../../utilys/axios"
 import { path } from '../../../utilys/path';
-import { io } from 'socket.io-client';
 function Modal() {
   const { state, dispatch } = useContext(NotesContext);
   const socket = path
@@ -22,7 +21,7 @@ function Modal() {
   })
   useEffect(() => {
     dispatch({ type: "SET__VALIDATION__ERRORS", payload: [] })
-  }, [])
+  }, [dispatch])
 
 
   function addNote({ e, singleNote, color, msg, active, status }) {

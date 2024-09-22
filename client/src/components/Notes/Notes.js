@@ -23,7 +23,7 @@ const Notes = (props) => {
                         title={note.title}
                         body={note.body}
                         author_name={note.author__name}
-                        id={note.id} />)) : <h1></h1>}
+                        id={note.id} />)) : null}
             </div>
         </div>
     );

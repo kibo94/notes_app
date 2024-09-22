@@ -6,7 +6,6 @@ import axios from "../../../../utilys/axios"
 import ValidationErrMesages from '../../../UI/ValidationErrMesages/ValidationErrMesages';
 import "../EditNote.css";
 
-import { io } from 'socket.io-client';
 import { path } from '../../../../utilys/path';
 const socket = path
 

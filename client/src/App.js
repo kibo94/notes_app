@@ -11,7 +11,6 @@ import EditNote from './components/Notes/EditNote/EditNote';
 import Alert from './components/UI/Alert/Alert';
 import axios from "./utilys/axios";
 import { path } from "./utilys/path"
-import { io } from "socket.io-client";
 import { NotesContext } from './context';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -22,10 +21,10 @@ function App() {
   const socket = path;
   useEffect(() => {
     fetchUsers()
-  }, [dispatch])
+  }, [])
   useEffect(() => {
     fetchNotes();
-  }, [dispatch])
+  }, [])
 
 
   useEffect(() => {
@@ -35,7 +34,7 @@ function App() {
     socket.on("addNote", data => {
       dispatch({ type: "SET__NOTES", payload: data.notes[0] })
     })
-  }, [state.notes])
+  }, [state.notes, dispatch, socket])
 
   const sortByDateBtn = () => {
 

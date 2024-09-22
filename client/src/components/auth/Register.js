@@ -13,7 +13,7 @@ const Register = () => {
     // RESET REGISTER FORM ERROR MESSAGES
     useEffect(() => {
         dispatch({ type: "SET__VALIDATION__ERRORS", payload: [] });
-    }, []);
+    }, [dispatch]);
 
     const loginFrom = {
         email: "",

@@ -37,8 +37,8 @@ const Note = (props) => {
           <h2 className="card-title">{title}</h2>
           <p className="card-text">{body}</p>
           <h3 className="card-subtitle mb-2 text-muted">{author_name}</h3>
-          {state.user.name == author_name && <button className="w-100 btn btn-danger" onClick={() => removeNoteHandler(id, title)}>Delete Note</button>}
-          {state.user.name == author_name && <button className="w-100 btn btn-warning mt-2 d-block" onClick={() => editNoteHandler(props.note)}>Edit Note</button>}
+          {state.user.name === author_name && <button className="w-100 btn btn-danger" onClick={() => removeNoteHandler(id, title)}>Delete Note</button>}
+          {state.user.name === author_name && <button className="w-100 btn btn-warning mt-2 d-block" onClick={() => editNoteHandler(props.note)}>Edit Note</button>}
         </div>
       </div>
     </div>
